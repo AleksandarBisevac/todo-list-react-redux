@@ -1,5 +1,16 @@
+/* 
+color palette
+- Dark Purple #160C28
+- Orange Yellow Crayola #EFCB68
+- Honeydew #E1EFE6
+- Ash Grey #AEB7B3
+- Rich Black FOGRA #000411
+
+*/
 .App {
   margin: 1rem;
   font-family: Arial, Helvetica, sans-serif;
-  color: #222222;
+  color: #000411;
+  width: 100vw;
+  height: 100vh;
 }
