@@ -9,6 +9,15 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
   const onChangeHandler = (e) => {
     setInputValue(e.target.value);
   };
+  const handleKeyDown = (e, key, action) => {
+    if (e.key === `${key}`) {
+      if (!isDuplicateText()) {
+        action(inputValue);
+        setInputValue('');
+      }
+    }
+  };
+  const isDuplicateText = () => todos.some((todo) => todo.text === inputValue);
 
   return (
     <div className='new-todo-form'>
@@ -18,12 +27,12 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
         placeholder='Type New ToDo here...'
         value={inputValue}
         onChange={(e) => onChangeHandler(e)}
+        onKeyDown={(e) => {
+          handleKeyDown(e, 'Enter', onCreatePressed);
+        }}
       />
       <button
         onClick={() => {
-          const isDuplicateText = todos.some(
-            (todo) => todo.text === inputValue
-          );
           if (!isDuplicateText) {
             onCreatePressed(inputValue);
             setInputValue('');

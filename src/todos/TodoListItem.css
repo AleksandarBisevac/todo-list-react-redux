@@ -24,6 +24,12 @@ button {
 
 .btn-completed {
   display: inline-block;
+  background-color: #aeb7b3;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.btn-not-completed {
+  display: inline-block;
   background-color: #efcb68;
 }
 
