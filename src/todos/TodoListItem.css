@@ -27,6 +27,7 @@ button {
   background-color: #aeb7b3;
   text-decoration: line-through;
   opacity: 0.7;
+  cursor: auto;
 }
 .btn-not-completed {
   display: inline-block;
