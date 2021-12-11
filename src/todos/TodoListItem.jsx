@@ -1,36 +1,49 @@
 import React from 'react';
-import './TodoListItem.css';
+import {
+  ButtonContainer_sc,
+  TodoItemContainer_sc,
+  TodoItemContainer_warning_sc,
+} from './ui/layout.styles';
+import {
+  Button_Completed_cs,
+  Button_Remove_cs,
+  Button_NotCompleted_cs,
+} from './ui/buttons.styles';
 
 const TodoListItem = ({ todo, onRemovedPressed, onCompletePressed }) => {
+  const Container = todo.isCompleted
+    ? TodoItemContainer_sc
+    : TodoItemContainer_warning_sc;
+
   return (
-    <div className='todo-item-container'>
+    <Container createdAt={todo.createdAt}>
       <h3>{todo.text}</h3>
-      <div className='buttons-container'>
+      <p>
+        Created at:&nbsp;
+        {new Date(todo.createdAt).toLocaleDateString()}
+      </p>
+      <ButtonContainer_sc>
         {todo.isCompleted ? (
-          <button className='btn-completed' disabled={true}>
-            Completed
-          </button>
+          <Button_Completed_cs disabled={true}>Completed</Button_Completed_cs>
         ) : (
-          <button
-            className='btn-not-completed'
+          <Button_NotCompleted_cs
             onClick={() => {
               onCompletePressed(todo._id);
             }}
           >
             Mark As Completed
-          </button>
+          </Button_NotCompleted_cs>
         )}
 
-        <button
-          className='btn-remove'
+        <Button_Remove_cs
           onClick={() => {
             onRemovedPressed(todo._id);
           }}
         >
           Remove
-        </button>
-      </div>
-    </div>
+        </Button_Remove_cs>
+      </ButtonContainer_sc>
+    </Container>
   );
 };
 
