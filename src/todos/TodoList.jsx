@@ -7,9 +7,17 @@ import {
 } from '../store/selectors';
 import { removeTodoRequest, completeTodoRequest } from '../thunks/thunks';
 import { loadTodos } from '../thunks/thunks';
+
+// IMPORT STYLED COMPONENTS
+import { ListWrapper_sc } from './ui/layout.styles';
+
+// IMPORT COMPONENTS
 import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
-import './TodoList.css';
+
+/****************************************
+ REACT COMPONENT
+****************************************/
 
 const TodoList = ({
   onRemovedPressed,
@@ -21,7 +29,7 @@ const TodoList = ({
 }) => {
   const loadingMessage = <div>Loading todos...</div>;
   const content = (
-    <div className='list-wrapper'>
+    <ListWrapper_sc>
       <NewTodoForm />
       {incompleteTodos.length ? (
         <>
@@ -49,13 +57,15 @@ const TodoList = ({
           ))}
         </>
       ) : null}
-    </div>
+    </ListWrapper_sc>
   );
   useEffect(() => {
     startLoadingTodos();
   }, []);
   return isLoading ? loadingMessage : content;
 };
+
+//--------------------------------------/
 
 const mapStateToProps = (state) => ({
   isLoading: getTodosLoading(state),

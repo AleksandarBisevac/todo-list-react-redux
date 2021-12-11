@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { getTodos } from '../store/selectors';
 import { addTodoRequest } from '../thunks/thunks';
-import './NewTodoForm.css';
+import { FormContainer_sc } from './ui/layout.styles';
+import { Input_CreateTodo_sc } from './ui/input.styles';
+import { Button_NewTodo_cs } from './ui/buttons.styles';
 
 const NewTodoForm = ({ todos, onCreatePressed }) => {
   const [inputValue, setInputValue] = useState('');
@@ -23,9 +25,8 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
   };
 
   return (
-    <div className='new-todo-form'>
-      <input
-        className='new-todo-input'
+    <FormContainer_sc>
+      <Input_CreateTodo_sc
         type='text'
         placeholder='Type New ToDo here...'
         value={inputValue}
@@ -34,18 +35,17 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
           handleKeyDown(e, 'Enter', onCreatePressed);
         }}
       />
-      <button
+      <Button_NewTodo_cs
         onClick={() => {
           if (!isDuplicateText()) {
             onCreatePressed(inputValue);
             setInputValue('');
           }
         }}
-        className='btn-new-todo'
       >
         Create ToDo
-      </button>
-    </div>
+      </Button_NewTodo_cs>
+    </FormContainer_sc>
   );
 };
 
