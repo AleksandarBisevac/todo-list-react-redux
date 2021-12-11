@@ -1,13 +1,13 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import TodoList from './todos/TodoList';
-import './App.css';
+import { AppContainer_sc } from './todos/ui/layout.styles';
 
 const App = () => {
   return (
-    <div className='App'>
+    <AppContainer_sc>
       <TodoList />
-    </div>
+    </AppContainer_sc>
   );
 };
 
