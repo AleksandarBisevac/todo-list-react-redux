@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const getBorderStyleForDate = (startingDate, currentDate) =>
+  startingDate > new Date(currentDate - 86400000) ? 'none' : '2px solid red';
 export const ListWrapper_sc = styled.div`
   max-width: 768px;
   margin: auto;
@@ -16,9 +18,7 @@ export const TodoItemContainer_sc = styled.div`
 
 export const TodoItemContainer_warning_sc = styled(TodoItemContainer_sc)`
   border-bottom: ${(props) =>
-    new Date(props.createdAt) > new Date(Date.now() - 8640000 * 2)
-      ? 'none'
-      : '2px solid red'};
+    getBorderStyleForDate(new Date(props.createdAt), Date.now())};
 `;
 
 export const ButtonContainer_sc = styled.div`
